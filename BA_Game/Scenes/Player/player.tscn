@@ -1,0 +1,154 @@
+[gd_scene load_steps=5 format=3 uid="uid://di8yrnxulme4m"]
+
+[ext_resource type="PackedScene" uid="uid://clxp71jpvu6n7" path="res://Scenes/Player/als_skin.tscn" id="1_bepdc"]
+[ext_resource type="Script" path="res://Scenes/Player/Player_Scripts/player.gd" id="1_oqhd4"]
+[ext_resource type="Script" path="res://Scenes/Player/Player_Scripts/Camear.gd" id="2_258ne"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ly66t"]
+height = 2.29799
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_oqhd4")
+
+[node name="RotationRoot" type="Node3D" parent="."]
+editor_description = "1、角色旋转根节点；
+2、本节点为角色模型的根节点；
+"
+
+[node name="Als_skin" parent="RotationRoot" instance=ExtResource("1_bepdc")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14864, 0)
+shape = SubResource("CapsuleShape3D_ly66t")
+
+[node name="CamearRoot" type="Node3D" parent="."]
+script = ExtResource("2_258ne")
+
+[node name="Camera3D" type="Camera3D" parent="CamearRoot"]
+transform = Transform3D(-1, -1.77636e-15, 8.74228e-08, 2.99003e-08, 0.939693, 0.34202, -8.21506e-08, 0.34202, -0.939693, -1.168, 1.982, -2.59)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 93.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 60
+text = "相机X轴坐标:
+"
+
+[node name="x_text" type="Label" parent="CanvasLayer/Label"]
+layout_mode = 0
+offset_left = 364.0
+offset_top = 1.0
+offset_right = 569.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 60
+text = "100.0
+"
+
+[node name="down" type="Button" parent="CanvasLayer/Label"]
+layout_mode = 0
+offset_left = 544.0
+offset_top = -1.0
+offset_right = 639.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 50
+text = "-"
+
+[node name="add" type="Button" parent="CanvasLayer/Label"]
+layout_mode = 0
+offset_left = 644.0
+offset_right = 739.0
+offset_bottom = 89.0
+theme_override_font_sizes/font_size = 50
+text = "+"
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_top = 100.0
+offset_right = 354.0
+offset_bottom = 183.0
+theme_override_font_sizes/font_size = 60
+text = "相机Y轴坐标:
+"
+
+[node name="x_text" type="Label" parent="CanvasLayer/Label2"]
+layout_mode = 0
+offset_left = 364.0
+offset_top = 1.0
+offset_right = 569.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 60
+text = "100.0
+"
+
+[node name="down2" type="Button" parent="CanvasLayer/Label2"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 544.0
+offset_top = -1.0
+offset_right = 639.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 50
+action_mode = 0
+text = "-"
+
+[node name="add2" type="Button" parent="CanvasLayer/Label2"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 644.0
+offset_right = 739.0
+offset_bottom = 89.0
+theme_override_font_sizes/font_size = 50
+text = "+"
+
+[node name="Label3" type="Label" parent="CanvasLayer"]
+offset_top = 214.0
+offset_right = 354.0
+offset_bottom = 297.0
+theme_override_font_sizes/font_size = 60
+text = "相机与人物的距离:
+"
+
+[node name="x_text" type="Label" parent="CanvasLayer/Label3"]
+layout_mode = 0
+offset_left = 519.0
+offset_top = 1.0
+offset_right = 724.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 60
+text = "100.0
+"
+
+[node name="down3" type="Button" parent="CanvasLayer/Label3"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 699.0
+offset_top = -1.0
+offset_right = 794.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 50
+text = "-"
+
+[node name="add3" type="Button" parent="CanvasLayer/Label3"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 799.0
+offset_right = 894.0
+offset_bottom = 89.0
+theme_override_font_sizes/font_size = 50
+text = "+"
+
+[node name="Label4" type="Label" parent="CanvasLayer"]
+offset_left = 11.0
+offset_top = 983.0
+offset_right = 508.0
+offset_bottom = 1066.0
+theme_override_font_sizes/font_size = 60
+text = "相机旋转角度"
+
+[connection signal="pressed" from="CanvasLayer/Label/down" to="." method="_on_down_pressed"]
+[connection signal="pressed" from="CanvasLayer/Label/add" to="." method="_on_add_pressed"]
+[connection signal="pressed" from="CanvasLayer/Label2/down2" to="." method="_on_down_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/Label2/add2" to="." method="_on_add_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/Label3/down3" to="." method="_on_down_3_pressed"]
+[connection signal="pressed" from="CanvasLayer/Label3/add3" to="." method="_on_add_3_pressed"]
